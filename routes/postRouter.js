@@ -15,4 +15,5 @@ router.get('/showMyPosts',auth,postController.showMyPosts);
 router.delete('/DeletePost/:postId',postController.deletePost)
 router.post('/Comment',auth,postController.comment);
 router.get('/showComments/:postId',postController.getCommentsByPostId);
+router.get('/PostsofFolloweduser',auth,postController.getPostOfFollowedUsers);
 }

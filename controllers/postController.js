@@ -106,3 +106,18 @@ catch(e)
 
 
 }
+
+module.exports.getPostOfFollowedUsers=async(req,resp)=>{
+    try {
+    const userId=req.userId;
+    const [posts]=await db.sequelize.query(`SELECT p.*,u.firstName,u.lastName,u.DOB,u.profileImage from posts p INNER join followers f on f.user_Id=p.postedBy INNER join userprofiles  u on p.postedBy=u.userId WHERE f.follower_id=${userId};`,{ raw: true }) 
+    resp.status(200).json({posts});
+    }
+    catch(e)
+    {
+        console.log(e);
+        resp.status(400).json({msg:'somethig went wrong'});
+    }
+    
+    }
+    
