@@ -3,6 +3,7 @@ const routes = require('./routes/index');
 const bodyParser=require('body-parser');
 const app=express();
 const router=express.Router();
+require('dotenv').config();
 const cookieParser=require('cookie-parser');
 app.use(bodyParser.urlencoded({extended:true}));
  app.use(cookieParser(),(req,resp,next)=>{next();});
@@ -14,6 +15,6 @@ app.use((req, res, next) => {
 });
 app.use('/',routes(router));
 
-app.listen(9000,()=>{
-console.log('listening on port 9000');
+app.listen(process.env.port,()=>{
+console.log(`listening on port ${process.env.port}`);
 })
